@@ -1,0 +1,9 @@
+[submodule "deps/node-cookiejar"]
+	path = deps/node-cookiejar
+	url = http://github.com/bmeck/node-cookiejar.git
+[submodule "deps/jsdom"]
+	path = deps/jsdom
+	url = http://github.com/tmpvar/jsdom.git
+[submodule "deps/node-htmlparser"]
+	path = deps/node-htmlparser
+	url = http://github.com/tautologistics/node-htmlparser.git
