@@ -8,6 +8,8 @@ module.exports = {
         , error : console.log
         , warn : console.log
       }
+      , setTimeout : setTimeout
+      , setInterval : setInterval
     }
     this.sandbox.window = sandbox
     next()

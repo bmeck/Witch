@@ -23,5 +23,5 @@ var client = connect.createClient(
   debug,
   repl
 )
-var sandbox = client("GET","localhost/~bradleymeck/alert.html")
+var sandbox = client("GET","www.gmail.com")
 sandbox.client = client

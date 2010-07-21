@@ -1,10 +1,12 @@
 var Script = process.binding( 'evals' ).Script
+  , sys = require( "sys" )
 module.exports = function ( res, next ) {
   var stdin = process.stdin ? process.stdin : process.stdin = process.openStdin()
     , sandbox = this.sandbox
     , repl = function ( data ) {
       try {
-        Script.runInNewContext( data, sandbox )
+        var result = Script.runInNewContext( "with(window){"+data+"}", sandbox )
+        console.log( sys.inspect(result) )
       }
       catch ( e ) {
         console.log( e.stack )

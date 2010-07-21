@@ -56,13 +56,24 @@ var createClient = exports.createClient = function createClient () {
             req.method || "GET"
             , path || "/", req.headers
           )
+//           console.log([
+//             closure.url.port || 80
+//             , closure.url.hostname || "localhost"
+//             , (closure.url.protocol || "http:").toLowerCase() == "https:"
+//           ].join(','))
+//           console.log([
+//             req.method || "GET"
+//             , path || "/", JSON.stringify(req.headers)
+//           ].join(','))
 
 
           request.addListener( "response", function next( response ) {
             i = 0
             if ( onResponse.length ) onResponse[ 0 ].call( closure, response, function next() {
               i++
-              if ( i >= onResponse.length ) return
+              if ( i >= onResponse.length ) {
+                return
+              }
               onResponse[ i ].call( closure, response, next )
             } )
           } )
@@ -74,7 +85,8 @@ var createClient = exports.createClient = function createClient () {
             onStreaming[ 0 ].call( closure, request, function next() {
               i++
               if ( i >= onStreaming.length ) {
-                if(request.connection.readystate == 'closed') request.end()
+                if(request.connection.readystate !== 'closed') request.end()
+                return
               }
               else onStreaming.call( closure, request, next )
             } )
