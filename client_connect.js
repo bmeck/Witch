@@ -47,15 +47,21 @@ var createClient = exports.createClient = function createClient () {
       , i = 0
       , sendRequest = function sendRequest() {
         var path = url.parse( url.format( closure.url ) )
-          path = ( path.pathname || "/" ) + ( "search" in path ? "?" + path.search : "" )
+          path = ( path.pathname || "/" ) + ( "search" in path ? path.search : "" )
+        console.log(req.method + " " + path)
+        console.log(sys.inspect(req.headers))
+          var secure = (closure.url.protocol || "").toLowerCase() == "https:"
           var request = http.createClient(
-            closure.url.port || 80
+            closure.url.port || (secure?443:80)
             , closure.url.hostname || "localhost"
-            , (closure.url.protocol || "http:").toLowerCase() == "https:" )
+            , secure
+          )
           .request(
             req.method || "GET"
             , path || "/", req.headers
           )
+          console.log("HTTPS?:"+((closure.url.protocol || "").toLowerCase() == "https:" ))
+          request.connection.addListener( "secure",function() {console.log("SECURED")} )
 //           console.log([
 //             closure.url.port || 80
 //             , closure.url.hostname || "localhost"
@@ -67,7 +73,7 @@ var createClient = exports.createClient = function createClient () {
 //           ].join(','))
 
 
-          request.addListener( "response", function next( response ) {
+          request.addListener( "response", function next( response ) {console.log("RESPONSE!")
             i = 0
             if ( onResponse.length ) onResponse[ 0 ].call( closure, response, function next() {
               i++
