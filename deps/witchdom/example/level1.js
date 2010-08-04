@@ -46,3 +46,11 @@ assert.ok( !b2.previousSibling, "previousSibling set" )
 assert.ok( b2.nextSibling == c, "nextSibling set" )
 assert.ok( c.previousSibling == b2, "previousSibling set" )
 assert.ok( !c.nextSibling, "nextSibling set" )
+
+b2.appendChild(dom.TextNode("my text is fight"))
+b2.lastChild.splitText(1)
+assert.ok(b2.lastChild.nodeValue === "y text is fight")
+assert.ok(b2.lastChild.previousSibling.nodeValue === "m")
+
+var document=dom.Document()
+assert.ok(document.createTextNode().nodeName === "#text")

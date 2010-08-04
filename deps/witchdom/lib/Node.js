@@ -370,6 +370,8 @@ Node.prototype.hasChildren = function appendChild(newChild) {
 }
 //  Node Node.prototype.cloneNode(in boolean deep)
 //                                        raises(DOMException);
-
+Node.prototype.toString = function toString() {
+	return "<"+this.nodeName+">"+this.nodeValue+"</"+this.nodeName+">"
+}
 return Node
 }

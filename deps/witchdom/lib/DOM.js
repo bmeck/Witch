@@ -24,6 +24,6 @@ var DOM = module.exports = function DOM() {
   integrate( arguments )
   return globals
 }
-DOM.level1 = [ require("./interfaces/EventListener"), require("./Node") ]
+DOM.level1 = [ require("./Node"), require("./Text"),require("./Document") ]
 //DOM.level2
 //DOM.level3
