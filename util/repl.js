@@ -5,6 +5,7 @@ module.exports = function ( res, next ) {
     , sandbox = this.sandbox
     , repl = function ( data ) {
       try {
+      	var syntaxCheck = Function(data)
         var result = Script.runInNewContext( "with(window){"+data+"}", sandbox )
         console.log( sys.inspect(result) )
       }

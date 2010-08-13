@@ -23,5 +23,12 @@ var client = connect.createClient(
   debug,
   repl
 )
-var sandbox = client("GET","www.gmail.com")
-sandbox.client = client
+if(module==require.main) {
+	var sandbox = client("GET",process.argv[2]||"www.gmail.com")
+	sandbox.client = client
+}
+else module.exports = function(method,url,headers,body) {
+	var sandbox = client(method||"GET",url||"www.gmail.com",headers,body)
+	sandbox.client = client
+	return sandbox
+}

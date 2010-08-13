@@ -19,6 +19,7 @@ module.exports = { onCreation : function( req, next ) {
   }
   else {
     var $this = this
+    console.log(this.url)
     dns.resolve( this.url.hostname || this.url.href, function (err, addresses) {
       if (err) {
         console.log( "DNS ERROR : " + err )

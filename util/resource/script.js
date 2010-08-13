@@ -2,6 +2,7 @@ var url = require("url")
   , Script = process.binding( 'evals' ).Script
 exports.loader = function(data) {
   try {
+	var syntaxCheck = Function(data)
     Script.runInNewContext( "with(window){"+data+"}", this.sandbox, this.location.href )
   }
   catch(exc) {

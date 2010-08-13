@@ -47,9 +47,7 @@ module.exports = {
     next()
   }
   , onResponse : function (res, next) {
-    console.log("REDIRECT='"+res.headers.location+"'")
     if(res.headers.location) {
-      //TODO:Fails on large urls
       this.location.assign(res.headers.location)
     }
     else next()

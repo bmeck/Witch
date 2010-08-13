@@ -11,7 +11,7 @@ var EventEmitter = require("events").EventEmitter
       console.log( "ERROR : " + error )
     }
     else {
-      while ( dom[ 0 ].type == "directive" ) {
+      while ( dom[ 0 ].type == "directive" || dom[ 0 ].type == "text" ) {
         dom.shift()
       }
       var path = [ dom[ 0 ] ]

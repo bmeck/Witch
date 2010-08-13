@@ -104,7 +104,7 @@ module.exports = function() {
       //standard action is blocking
       if (typeof resource === "string") {
       location = url.parse(location)
-      var resourceUrl = path.join( path.dirname(location.pathname), resource )
+      var resourceUrl = location.pathname ? path.join( path.dirname(location.pathname), resource ) : resource
       resourceUrl = ((location.protocol+"//")||"http://")+(location.hostname||"")+resourceUrl+(location.search||"")
       //console.log("resource="+resourceUrl)
         var queueObj = {}, watcher

@@ -60,7 +60,7 @@ var createClient = exports.createClient = function createClient () {
             req.method || "GET"
             , path || "/", req.headers
           )
-          console.log("HTTPS?:"+((closure.url.protocol || "").toLowerCase() == "https:" ))
+//          console.log("HTTPS?:"+((closure.url.protocol || "").toLowerCase() == "https:" ))
           request.connection.addListener( "secure",function() {console.log("SECURED")} )
 //           console.log([
 //             closure.url.port || 80

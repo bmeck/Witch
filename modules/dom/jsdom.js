@@ -4,8 +4,10 @@ var jsdom = require("../../deps/jsdom/lib/jsdom")
 
 module.exports = {
   onCreation:function(res,next) {
-    var browser = browserAugmentation(dom)
+    var browser = browserAugmentation(require("./form").call(this,dom))
     var document = this.document = new browser.Document()
+    document.location = this.location
+    document.defaultView = this.sandbox
     //console.log("DOCUMENT::"+document)
     var selected = null
     //console.log("SAX::"+this.sax)
